@@ -6,6 +6,24 @@
 #include<string>
 using namespace std;
 
+bool negativan(double broj)
+{
+    if(broj<0)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool tekuci(unsigned long long broj)
+{
+    if(broj/10000000 == 32)
+    {
+        return true;
+    }
+    return false;
+}
+
 int main()
 {
     int odabir, broj_klijenata = 0;
@@ -59,6 +77,21 @@ int main()
         }
         else if(odabir==2)
         {
+            double suma;
+            int broj_negativnih, broj_tekucih;
+            string najveci;
+            cout << endl << "============================= PODACI =============================" << endl;
+            for(int i=0; i<broj_klijenata; i++)
+            {
+                cout << polje_br_racuna[i] << ", " << polje_prezime_ime[i] << ", " << saldo[i] << " HRK" << endl;
+            }
+            suma = accumulate(saldo, saldo+broj_klijenata, 0.0);
+            int max_indeks = max_element(saldo, saldo+broj_klijenata)-saldo;
+            najveci = polje_prezime_ime[max_indeks];
+            broj_negativnih = count_if(saldo, saldo+broj_klijenata, negativan);
+            broj_tekucih = count_if(polje_br_racuna, polje_br_racuna+broj_klijenata, tekuci);
+            cout << endl << "UKUPNO: " << suma << " HRK | NAJVECI: " << najveci << " | BR NEGATIVNIH: " << broj_negativnih << " | BR TEKUCIH: " << broj_tekucih << endl;
+            cout << "==================================================================" << endl << endl;
         }
         else if(odabir==3)
         {
