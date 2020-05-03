@@ -88,8 +88,8 @@ int main()
                 }
             }
             polje_br_racuna[broj_klijenata] = unos;
-            cin.ignore();
             cout << "Unesite prezime i ime: ";
+            cin.ignore();
             getline(cin, polje_prezime_ime[broj_klijenata]);
             cout << "Unesite saldo: ";
             cin >> saldo[broj_klijenata];
@@ -121,11 +121,33 @@ int main()
             getline(cin, pretraga);
             if(pretraga_klijenta(broj_klijenata, polje_br_racuna, polje_prezime_ime, saldo, pretraga)==false)
             {
-                cout << "GRESKA: Takvih racuna nema." << endl;
+                cout << "GRESKA: Trazeni racun ne postoji." << endl;
             }
         }
         else if(odabir==4)
         {
+            unsigned long long int broj;
+            cout << "Unesite broj racuna kojeg zelite izbrisati: ";
+            cin >> broj;
+            int i;
+            for(i = 0; i < broj_klijenata; i++)
+            {
+                if(polje_br_racuna[i] == broj)
+                {
+                    for(int j = i; j < broj_klijenata - 1; j++)
+                    {
+                        polje_br_racuna[j] = polje_br_racuna[j+1];
+                        polje_prezime_ime[j] = polje_prezime_ime[j+1];
+                        saldo[j] = saldo[j+1];
+                    }
+                    broj_klijenata--;
+                    break;
+                }
+            }
+            if(i == broj_klijenata)
+            {
+                cout << "GRESKA: Trazeni racun ne postoji." << endl;
+            }
         }
         else if(odabir==5)
         {
