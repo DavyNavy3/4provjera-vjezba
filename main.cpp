@@ -57,8 +57,8 @@ int main()
         cout << "Unesite 2 za ispis svih podataka." << endl;
         cout << "Unesite 3 za pretragu prema prezimenu i imenu." << endl;
         cout << "Unesite 4 za brisanje racuna." << endl;
-        cout << "Unesite 5 za izmjenu podataka prema broju racuna." << endl;
-        cout << "Unesite 6 za ispis sortirano prema prezimenu i imenu." << endl;
+        cout << "Unesite 5 za ispis sortirano prema prezimenu i imenu." << endl;
+        cout << "Unesite 6 za izmjenu podataka prema broju racuna." << endl;
         cout << "Unesite 7 za izlaz iz programa." << endl;
         cout << "=================================================================" << endl;
         cout << "Unos: ";
@@ -130,11 +130,11 @@ int main()
             cout << "Unesite broj racuna kojeg zelite izbrisati: ";
             cin >> broj;
             int i;
-            for(i = 0; i < broj_klijenata; i++)
+            for(i=0; i<broj_klijenata; i++)
             {
-                if(polje_br_racuna[i] == broj)
+                if(polje_br_racuna[i]==broj)
                 {
-                    for(int j = i; j < broj_klijenata - 1; j++)
+                    for(int j=i; j<broj_klijenata-1; j++)
                     {
                         polje_br_racuna[j] = polje_br_racuna[j+1];
                         polje_prezime_ime[j] = polje_prezime_ime[j+1];
@@ -151,6 +151,24 @@ int main()
         }
         else if(odabir==5)
         {
+            string imena[1000];
+            for(int i=0; i<broj_klijenata; i++)
+            {
+                imena[i] = polje_prezime_ime[i];
+            }
+            sort(imena, imena + broj_klijenata);
+            cout << endl << "============ PODACI SORTIRANI PREMA PREZIMENU I IMENU ============" << endl;
+            for(int i=0; i<broj_klijenata; i++)
+            {
+                for(int j=0; j<broj_klijenata; j++)
+                {
+                    if(imena[i] == polje_prezime_ime[j])
+                    {
+                        cout << polje_prezime_ime[j] << endl << polje_br_racuna[j] << endl << saldo[j] << endl << endl;
+                    }
+                }
+            }
+            cout << "==================================================================" << endl << endl;
         }
         else if(odabir==6)
         {
