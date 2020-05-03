@@ -24,6 +24,26 @@ bool tekuci(unsigned long long broj)
     return false;
 }
 
+bool pretraga_klijenta(int broj_klijenata, unsigned long long int polje_br_racuna[], string polje_prezime_ime[], double saldo[], string pretraga)
+{
+    int j = 0;
+    for(int i=0; i<broj_klijenata; i++)
+    {
+        if(polje_prezime_ime[i] == pretraga)
+        {
+            cout << endl << "========================= TRAZENI RACUN =========================" << endl;
+            cout << "Broj racuna: " << polje_br_racuna[i] << endl << "Iznos: " << saldo[i]<< " HRK" << endl;
+            cout << "=================================================================" << endl;
+            j++;
+        }
+    }
+    if(j==0)
+    {
+        return false;
+    }
+    return true;
+}
+
 int main()
 {
     int odabir, broj_klijenata = 0;
@@ -95,6 +115,14 @@ int main()
         }
         else if(odabir==3)
         {
+            cout << "Unesite ime i prezime koje pretrazujete: ";
+            string pretraga;
+            cin.ignore();
+            getline(cin, pretraga);
+            if(pretraga_klijenta(broj_klijenata, polje_br_racuna, polje_prezime_ime, saldo, pretraga)==false)
+            {
+                cout << "GRESKA: Takvih racuna nema." << endl;
+            }
         }
         else if(odabir==4)
         {
@@ -107,6 +135,8 @@ int main()
         }
         else if(odabir==7)
         {
+            cout << "Zatvaranje programa..." << endl;
+            break;
         }
         else
         {
